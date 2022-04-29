@@ -27,8 +27,8 @@ const opt_desktop = {
   },
 }
 const opt_mobile = {
-  width: 680,
-  height: 360,
+  width: 375,
+  height: 225,
   layout: {
     backgroundColor: "#000000",
     textColor: "rgba(255, 255, 255, 0.9)",
@@ -93,6 +93,3 @@ fetch("https://forex.hasindusithmin.repl.co/data/eurusd=x/5m")
 // 	})
 // }
 
-const demo = ()=>{
-  alert(`width:${screen.width} height:${screen.height}`)
-}
