@@ -93,3 +93,6 @@ fetch("https://forex.hasindusithmin.repl.co/data/eurusd=x/5m")
 // 	})
 // }
 
+const demo = ()=>{
+  alert(`width:${screen.width} height:${screen.height}`)
+}
