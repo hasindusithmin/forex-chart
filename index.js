@@ -1,8 +1,10 @@
 const btnstyle = 'w3-button w3-round w3-border w3-border-black'
 const currencies = ['eurusd', 'usdjpy', 'gbpusd', 'audusd', 'nzdusd', 'eurjpy', 'gbpjpy', 'eurgbp', 'eurcad', 'eursek', 'eurchf', 'eurhuf', 'eurjpy', 'usdcny', 'usdhkd', 'usdsgd', 'usdinr', 'usdmxn', 'usdphp', 'usdidr', 'usdthb', 'usdmyr', 'usdzar', 'usdrub']
 const timeframs = ['5m','15m','30m','60m','1h']
+const functions = ['cdldoji', 'cdldojistar','cdl2crows', 'cdl3blackcrows', 'cdl3inside', 'cdl3linestrike', 'cdl3outside', 'cdl3starsinsouth', 'cdl3whitesoldiers', 'cdlabandonedbaby', 'cdladvanceblock', 'cdlbelthold', 'cdlbreakaway', 'cdlclosingmarubozu', 'cdlconcealbabyswall', 'cdlcounterattack', 'cdldarkcloudcover', 'cdldragonflydoji', 'cdlengulfing', 'cdleveningdojistar', 'cdleveningstar', 'cdlgapsidesidewhite', 'cdlgravestonedoji', 'cdlhammer', 'cdlhangingman', 'cdlharami', 'cdlharamicross', 'cdlhighwave', 'cdlhikkake', 'cdlhikkakemod', 'cdlhomingpigeon', 'cdlidentical3crows', 'cdlinneck', 'cdlinvertedhammer', 'cdlkicking', 'cdlkickingbylength', 'cdlladderbottom', 'cdllongleggeddoji', 'cdllongline', 'cdlmarubozu', 'cdlmatchinglow', 'cdlmathold', 'cdlmorningdojistar', 'cdlmorningstar', 'cdlonneck', 'cdlpiercing', 'cdlrickshawman', 'cdlrisefall3methods', 'cdlseparatinglines', 'cdlshootingstar', 'cdlshortline', 'cdlspinningtop', 'cdlstalledpattern', 'cdlsticksandwich', 'cdltakuri', 'cdltasukigap', 'cdlthrusting', 'cdltristar', 'cdlunique3river', 'cdlupsidegap2crows', 'cdlxsidegap3methods']
 const selectForCurrency = document.createElement('select');
 const selectForTimeFrame = document.createElement('select');
+const selectForFunctons = document.createElement('select');
 const button = document.createElement('button');
 window.addEventListener('DOMContentLoaded', (event) => {
     selectForCurrency.className = btnstyle
@@ -20,10 +22,18 @@ window.addEventListener('DOMContentLoaded', (event) => {
       opt.innerText = timefram;
       selectForTimeFrame.appendChild(opt);
     }
+    selectForFunctons.className = btnstyle;
+    for (let func of functions) {
+      const opt = document.createElement('option');
+      opt.value = func;
+      opt.innerText = func.toUpperCase();
+      selectForFunctons.appendChild(opt);
+    }
     button.className = 'w3-button w3-round w3-blue';
     button.innerText = 'click'
     document.getElementById('select').appendChild(selectForCurrency)
     document.getElementById('select').appendChild(selectForTimeFrame)
+    document.getElementById('select').appendChild(selectForFunctons)
     document.getElementById('select').appendChild(button)
 });
 
@@ -102,6 +112,7 @@ const candleSeries2 = chart2.addCandlestickSeries(opt2);
 button.onclick = ()=>{
   const cross = selectForCurrency.value;
   const timeframe = selectForTimeFrame.value;
+  const func = selectForFunctons.value;
   fetch(`https://forex-codeunity.herokuapp.com/yahoo/history/${cross}?interval=${timeframe}`)
     .then(res=>res.json())
     .then(data=>{
@@ -116,7 +127,19 @@ button.onclick = ()=>{
         candlestick.push(candle)
       })
       candleSeries1.setData(candlestick);
-      candleSeries2.setData(candlestick)
+      candleSeries2.setData(candlestick);
+      fetch(`https://pattern-codeunity.herokuapp.com/point/${cross}/${timeframe}/${func}`)
+        .then(r=>r.json())
+          .then(dt=>{
+            const markers = []
+            dt.forEach(d=>{
+              markers.push({ time: d, position: 'aboveBar', color: '#ffffff', shape: 'arrowDown'})
+            })
+            candleSeries1.setMarkers(markers)
+            candleSeries2.setMarkers(markers)
+
+          })
     })
 }
+// 
 
