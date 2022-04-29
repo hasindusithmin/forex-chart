@@ -1,26 +1,26 @@
-
+const btnstyle = 'w3-button w3-round w3-border w3-border-black'
 const currencies = ['eurusd', 'usdjpy', 'gbpusd', 'audusd', 'nzdusd', 'eurjpy', 'gbpjpy', 'eurgbp', 'eurcad', 'eursek', 'eurchf', 'eurhuf', 'eurjpy', 'usdcny', 'usdhkd', 'usdsgd', 'usdinr', 'usdmxn', 'usdphp', 'usdidr', 'usdthb', 'usdmyr', 'usdzar', 'usdrub']
 const timeframs = ['5m','15m','30m','60m','1h']
 const selectForCurrency = document.createElement('select');
 const selectForTimeFrame = document.createElement('select');
 const button = document.createElement('button');
 window.addEventListener('DOMContentLoaded', (event) => {
-    selectForCurrency.className = 'w3-input w3-half'
+    selectForCurrency.className = btnstyle
     for (let currency of currencies) {
       const opt = document.createElement('option');
       opt.value = currency;
-      opt.innerText = currency;
+      opt.innerText = currency.toUpperCase();
       selectForCurrency.appendChild(opt);
     }
     
-    selectForTimeFrame.className = 'w3-input w3-half'
+    selectForTimeFrame.className = btnstyle
     for (let timefram of timeframs) {
       const opt = document.createElement('option');
       opt.value = timefram;
       opt.innerText = timefram;
       selectForTimeFrame.appendChild(opt);
     }
-    button.className = 'w3-input';
+    button.className = 'w3-button w3-round w3-blue';
     button.innerText = 'click'
     document.getElementById('select').appendChild(selectForCurrency)
     document.getElementById('select').appendChild(selectForTimeFrame)
@@ -97,12 +97,7 @@ const chart1 = LightweightCharts.createChart(document.getElementById("chart1"), 
 const chart2 = LightweightCharts.createChart(document.getElementById("chart2"), opt_mobile);
 const candleSeries1 = chart1.addCandlestickSeries(opt2);
 const candleSeries2 = chart2.addCandlestickSeries(opt2);
-// fetch("https://forex.hasindusithmin.repl.co/data/eurusd=x/5m")
-//   .then((res) => res.json())
-//   .then((data) => {
-//     candleSeries1.setData(data);
-//     candleSeries2.setData(data);
-//   });
+
 
 button.onclick = ()=>{
   const cross = selectForCurrency.value;
