@@ -1,4 +1,4 @@
-const btnstyle = ''
+// const btnstyle = ''
 const currencies = ['eurusd', 'usdjpy', 'gbpusd', 'audusd', 'nzdusd', 'eurjpy', 'gbpjpy', 'eurgbp', 'eurcad', 'eursek', 'eurchf', 'eurhuf', 'eurjpy', 'usdcny', 'usdhkd', 'usdsgd', 'usdinr', 'usdmxn', 'usdphp', 'usdidr', 'usdthb', 'usdmyr', 'usdzar', 'usdrub']
 const timeframs = ['5m', '15m', '30m', '60m', '1h']
 const functions = ['cdldoji', 'cdldojistar', 'cdl2crows', 'cdl3blackcrows', 'cdl3inside', 'cdl3linestrike', 'cdl3outside', 'cdl3starsinsouth', 'cdl3whitesoldiers', 'cdlabandonedbaby', 'cdladvanceblock', 'cdlbelthold', 'cdlbreakaway', 'cdlclosingmarubozu', 'cdlconcealbabyswall', 'cdlcounterattack', 'cdldarkcloudcover', 'cdldragonflydoji', 'cdlengulfing', 'cdleveningdojistar', 'cdleveningstar', 'cdlgapsidesidewhite', 'cdlgravestonedoji', 'cdlhammer', 'cdlhangingman', 'cdlharami', 'cdlharamicross', 'cdlhighwave', 'cdlhikkake', 'cdlhikkakemod', 'cdlhomingpigeon', 'cdlidentical3crows', 'cdlinneck', 'cdlinvertedhammer', 'cdlkicking', 'cdlkickingbylength', 'cdlladderbottom', 'cdllongleggeddoji', 'cdllongline', 'cdlmarubozu', 'cdlmatchinglow', 'cdlmathold', 'cdlmorningdojistar', 'cdlmorningstar', 'cdlonneck', 'cdlpiercing', 'cdlrickshawman', 'cdlrisefall3methods', 'cdlseparatinglines', 'cdlshootingstar', 'cdlshortline', 'cdlspinningtop', 'cdlstalledpattern', 'cdlsticksandwich', 'cdltakuri', 'cdltasukigap', 'cdlthrusting', 'cdltristar', 'cdlunique3river', 'cdlupsidegap2crows', 'cdlxsidegap3methods']
@@ -7,7 +7,7 @@ const selectForTimeFrame = document.createElement('select');
 const selectForFunctons = document.createElement('select');
 const button = document.createElement('button');
 window.addEventListener('DOMContentLoaded', (event) => {
-    selectForCurrency.className = btnstyle
+    // selectForCurrency.className = btnstyle
     for (let currency of currencies) {
         const opt = document.createElement('option');
         opt.value = currency;
@@ -15,21 +15,21 @@ window.addEventListener('DOMContentLoaded', (event) => {
         selectForCurrency.appendChild(opt);
     }
 
-    selectForTimeFrame.className = btnstyle
+    // selectForTimeFrame.className = btnstyle
     for (let timefram of timeframs) {
         const opt = document.createElement('option');
         opt.value = timefram;
         opt.innerText = timefram;
         selectForTimeFrame.appendChild(opt);
     }
-    selectForFunctons.className = btnstyle;
+    // selectForFunctons.className = btnstyle;
     for (let func of functions) {
         const opt = document.createElement('option');
         opt.value = func;
         opt.innerText = func.toUpperCase();
         selectForFunctons.appendChild(opt);
     }
-    button.className = btnstyle;
+    // button.className = btnstyle;
     button.innerText = 'click'
     button.style.color = 'red'
     document.getElementById('select').appendChild(selectForCurrency)
