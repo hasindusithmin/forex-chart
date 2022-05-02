@@ -26,7 +26,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
     for (let func of functions) {
         const opt = document.createElement('option');
         opt.value = func;
-        opt.innerText = func.toUpperCase();
+        opt.innerText = func.replace("cdl", "").toUpperCase();
         selectForFunctons.appendChild(opt);
     }
     // button.className = btnstyle;
